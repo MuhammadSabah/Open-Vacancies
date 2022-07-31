@@ -31,11 +31,11 @@ class _RegisterScreenView extends State<RegisterScreenView> {
             const SizedBox(
               height: 40,
             ),
-            const Text(
+            Text(
               'Register',
               style: TextStyle(
-                fontSize: 35,
-                color: Colors.black,
+                fontSize: 36,
+                color: Colors.grey.shade900,
               ),
             ),
             const SizedBox(height: 35),
@@ -78,18 +78,6 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      Text(
-                        'FORGET PASSWORD',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
                   const SizedBox(height: 35),
                   InkWell(
                     onTap: () async {
@@ -107,13 +95,21 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                       }
                     },
                     child: Ink(
+                      width: MediaQuery.of(context).size.width,
                       padding: const EdgeInsets.all(12),
-                      color: Colors.grey,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        color: Colors.green.shade400,
+                      ),
                       child: const Text(
                         'Sign up',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 26,
-                          color: Colors.black,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),

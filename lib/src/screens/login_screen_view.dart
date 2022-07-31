@@ -79,7 +79,12 @@ class _LoginScreenView extends State<LoginScreenView> {
                     ),
                     Container(
                       padding: const EdgeInsets.all(12),
-                      color: Colors.grey,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        color: Colors.grey,
+                      ),
                       child: ElevatedButton(
                         onPressed: () async {
                           final validForm = _formKey.currentState!.validate();
