@@ -56,7 +56,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                       decoration: const InputDecoration(
                         counterText: ' ',
                         filled: true,
-                        fillColor: Color.fromARGB(255, 193, 193, 193),
+                        fillColor: Color.fromARGB(255, 209, 209, 209),
                       )),
                   const SizedBox(
                     height: 30,
@@ -73,56 +73,50 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                     decoration: const InputDecoration(
                       counterText: ' ',
                       filled: true,
-                      fillColor: Color.fromARGB(255, 193, 193, 193),
+                      fillColor: Color.fromARGB(255, 209, 209, 209),
                     ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   const SizedBox(height: 35),
-                  InkWell(
-                    onTap: () async {
-                      final validForm = _formKey.currentState!.validate();
-                      if (validForm) {
-                        final _output = await AuthMethods().signUpUser(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                        );
-                        if (_output == null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreenView(),
-                              ));
-                        } else {
-                          if (_output != null) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text('$_output'),
-                              duration: const Duration(
-                                milliseconds: 2300,
-                              ),
-                              backgroundColor: Colors.red.shade500,
-                            ));
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 56,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        () async {
+                          final validForm = _formKey.currentState!.validate();
+                          if (validForm) {
+                            final _output = await AuthMethods().signUpUser(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            );
+                            if (_output == null) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreenView(),
+                                  ));
+                            } else {
+                              if (_output != null) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text('$_output'),
+                                  duration: const Duration(
+                                    milliseconds: 2300,
+                                  ),
+                                  backgroundColor: Colors.red.shade500,
+                                ));
+                              }
+                            }
                           }
-                        }
-                      }
-                    },
-                    child: Ink(
-                      width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        color: Colors.green.shade400,
-                      ),
+                        };
+                      },
                       child: const Text(
                         'Sign up',
-                        textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 26,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
                       ),
                     ),

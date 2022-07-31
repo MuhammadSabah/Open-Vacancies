@@ -16,9 +16,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData().copyWith(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.red,
+          brightness: Brightness.light,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
-      home: RegisterScreenView(),
+      home: const RegisterScreenView(),
     );
   }
 }
