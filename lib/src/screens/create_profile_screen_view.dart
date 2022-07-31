@@ -7,7 +7,6 @@ class CreateProfileScreenView extends StatefulWidget {
 }
 
 class _CreateProfileScreenView extends State<CreateProfileScreenView> {
-  
   TextEditingController controllerTextField = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -15,16 +14,18 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 40,),
-            Text('OPEN VACANCIES',style: 
-            TextStyle(fontSize: 35, color: Colors.black,)
-            ,),
-            
-            
-
+          children: const [
+            SizedBox(
+              height: 40,
+            ),
+            Text(
+              'OPEN VACANCIES',
+              style: TextStyle(
+                fontSize: 35,
+                color: Colors.black,
+              ),
+            ),
           ],
-
         ),
       ),
     );
