@@ -86,34 +86,32 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                     width: MediaQuery.of(context).size.width,
                     height: 56,
                     child: ElevatedButton(
-                      onPressed: () {
-                        () async {
-                          final validForm = _formKey.currentState!.validate();
-                          if (validForm) {
-                            final _output = await AuthMethods().signUpUser(
-                              email: _emailController.text,
-                              password: _passwordController.text,
-                            );
-                            if (_output == null) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreenView(),
-                                  ));
-                            } else {
-                              if (_output != null) {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: Text('$_output'),
-                                  duration: const Duration(
-                                    milliseconds: 2300,
-                                  ),
-                                  backgroundColor: Colors.red.shade500,
-                                ));
-                              }
+                      onPressed: () async {
+                        final navigator = Navigator.of(context);
+                        final validForm = _formKey.currentState!.validate();
+                        if (validForm) {
+                          final _output = await AuthMethods().signUpUser(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          );
+                          print(_output);
+                          if (_output == null) {
+                            navigator.push(MaterialPageRoute(
+                              builder: (context) => LoginScreenView(),
+                            ));
+                          } else {
+                            if (_output != null) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text('$_output'),
+                                duration: const Duration(
+                                  milliseconds: 2300,
+                                ),
+                                backgroundColor: Colors.red.shade500,
+                              ));
                             }
                           }
-                        };
+                        }
                       },
                       child: const Text(
                         'Sign up',

@@ -1,6 +1,7 @@
 import 'package:class_assignment_2/firebase_options.dart';
 import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 import 'package:class_assignment_2/src/screens/login_screen_view.dart';
+import 'package:class_assignment_2/src/screens/register_screen_view.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const CreateProfileScreenView(),
+      home: const RegisterScreenView(),
     );
   }
 }
