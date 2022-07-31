@@ -7,7 +7,6 @@ class HomeScreenView extends StatefulWidget {
 }
 
 class _HomeScreenView extends State<HomeScreenView> {
-  
   TextEditingController controllerTextField = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -15,16 +14,18 @@ class _HomeScreenView extends State<HomeScreenView> {
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 40,),
-            Text('OPEN VACANCIES',style: 
-            TextStyle(fontSize: 35, color: Colors.black,)
-            ,),
-            
-            
-
+          children: const [
+            SizedBox(
+              height: 40,
+            ),
+            Text(
+              'OPEN VACANCIES',
+              style: TextStyle(
+                fontSize: 35,
+                color: Colors.black,
+              ),
+            ),
           ],
-
         ),
       ),
     );

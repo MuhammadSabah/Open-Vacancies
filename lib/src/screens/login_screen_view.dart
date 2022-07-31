@@ -1,3 +1,4 @@
+import 'package:class_assignment_2/src/firebase/auth_methods.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreenView extends StatefulWidget {
@@ -7,10 +8,17 @@ class LoginScreenView extends StatefulWidget {
 }
 
 class _LoginScreenView extends State<LoginScreenView> {
-  
-  
-  TextEditingController controllerPhoneNumber = TextEditingController();
-  TextEditingController controllerPassword = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,66 +26,86 @@ class _LoginScreenView extends State<LoginScreenView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 40,),
-            Text('LOGIN',style: 
-            TextStyle(fontSize: 35, color: Colors.black,)
-            ,),
-            SizedBox(height: 60,),
-            Container(
-              padding: EdgeInsets.all(25),
-              child: Column(
-                children: [
-                   TextField(
-                    
-                      // changed this
-                      controller: controllerPhoneNumber,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 193, 193, 193),
-                        
-                        )
-                    ),
-                    SizedBox(height: 30,),
-                    TextField(
-                      
-                        // changed this
-                        controller: controllerPassword,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromARGB(255, 193, 193, 193),
-                          
-                          )
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text('FORGET PASSWORD',style: 
-                            TextStyle(fontSize:16, color: Colors.black,)
-                            ,),
-                        ],
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(12),
-                        color: Colors.grey,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text('LOGIN',
-                              style: TextStyle(fontSize:26, color: Colors.black,)),
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.grey,
-                            
-                           
-                          ),
-                        ),
-                      ),
-                ],
+            const SizedBox(
+              height: 40,
+            ),
+            const Text(
+              'LOGIN',
+              style: TextStyle(
+                fontSize: 35,
+                color: Colors.black,
               ),
             ),
-            
-
+            const SizedBox(
+              height: 60,
+            ),
+            Container(
+              padding: const EdgeInsets.all(25),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                        validator: (String? value) {},
+                        controller: _emailController,
+                        decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Color.fromARGB(255, 193, 193, 193),
+                        )),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    TextFormField(
+                        controller: _passwordController,
+                        decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Color.fromARGB(255, 193, 193, 193),
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: const [
+                        Text(
+                          'FORGET PASSWORD',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      color: Colors.grey,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          final validForm = _formKey.currentState!.validate();
+                          if (validForm) {
+                            await AuthMethods().logInUser(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            );
+                          }
+                        },
+                        child: Text(
+                          'Log in',
+                          style: TextStyle(
+                            fontSize: 26,
+                            color: Colors.black,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
-
         ),
       ),
     );
