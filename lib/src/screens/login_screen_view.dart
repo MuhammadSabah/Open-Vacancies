@@ -1,5 +1,5 @@
 import 'package:class_assignment_2/src/firebase/auth_methods.dart';
-import 'package:class_assignment_2/src/screens/home_screen_view.dart';
+import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreenView extends StatefulWidget {
@@ -32,7 +32,7 @@ class _LoginScreenView extends State<LoginScreenView> {
               height: 40,
             ),
             Text(
-              'Log in',
+              'Login'.toUpperCase(),
               style: TextStyle(
                 fontSize: 36,
                 color: Colors.grey.shade900,
@@ -52,6 +52,7 @@ class _LoginScreenView extends State<LoginScreenView> {
                         }
                       },
                       controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         counterText: ' ',
                         filled: true,
@@ -69,6 +70,7 @@ class _LoginScreenView extends State<LoginScreenView> {
                       }
                     },
                     controller: _passwordController,
+                    keyboardType: TextInputType.visiblePassword,
                     decoration: const InputDecoration(
                       counterText: ' ',
                       filled: true,
@@ -95,7 +97,8 @@ class _LoginScreenView extends State<LoginScreenView> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => HomeScreenView(),
+                                    builder: (context) =>
+                                        CreateProfileScreenView(),
                                   ));
                             } else {
                               if (_output != null) {
@@ -113,7 +116,7 @@ class _LoginScreenView extends State<LoginScreenView> {
                         };
                       },
                       child: const Text(
-                        'Sign up',
+                        'Log in',
                         style: TextStyle(
                           fontSize: 18,
                         ),

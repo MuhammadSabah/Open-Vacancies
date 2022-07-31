@@ -1,5 +1,5 @@
 import 'package:class_assignment_2/src/firebase/auth_methods.dart';
-import 'package:class_assignment_2/src/screens/home_screen_view.dart';
+
 import 'package:class_assignment_2/src/screens/login_screen_view.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +33,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
               height: 40,
             ),
             Text(
-              'Register',
+              'Register'.toUpperCase(),
               style: TextStyle(
                 fontSize: 36,
                 color: Colors.grey.shade900,
@@ -53,6 +53,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                         }
                       },
                       controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         counterText: ' ',
                         filled: true,
@@ -70,6 +71,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                       }
                     },
                     controller: _passwordController,
+                    keyboardType: TextInputType.visiblePassword,
                     decoration: const InputDecoration(
                       counterText: ' ',
                       filled: true,
