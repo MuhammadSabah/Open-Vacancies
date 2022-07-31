@@ -1,5 +1,6 @@
 import 'package:class_assignment_2/src/firebase/auth_methods.dart';
 import 'package:class_assignment_2/src/screens/home_screen_view.dart';
+import 'package:class_assignment_2/src/screens/login_screen_view.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreenView extends StatefulWidget {
@@ -83,15 +84,27 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                     onTap: () async {
                       final validForm = _formKey.currentState!.validate();
                       if (validForm) {
-                        await AuthMethods().signUpUser(
+                        final _output = await AuthMethods().signUpUser(
                           email: _emailController.text,
                           password: _passwordController.text,
                         );
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomeScreenView(),
+                        if (_output == null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreenView(),
+                              ));
+                        } else {
+                          if (_output != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('$_output'),
+                              duration: const Duration(
+                                milliseconds: 2300,
+                              ),
+                              backgroundColor: Colors.red.shade500,
                             ));
+                          }
+                        }
                       }
                     },
                     child: Ink(

@@ -1,4 +1,5 @@
 import 'package:class_assignment_2/src/firebase/auth_methods.dart';
+import 'package:class_assignment_2/src/screens/home_screen_view.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreenView extends StatefulWidget {
@@ -22,93 +23,110 @@ class _LoginScreenView extends State<LoginScreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Form(
+        key: _formKey,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
               height: 40,
             ),
-            const Text(
-              'LOGIN',
+            Text(
+              'Log in',
               style: TextStyle(
-                fontSize: 35,
-                color: Colors.black,
+                fontSize: 36,
+                color: Colors.grey.shade900,
               ),
             ),
-            const SizedBox(
-              height: 60,
-            ),
+            const SizedBox(height: 35),
             Container(
               padding: const EdgeInsets.all(25),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                        validator: (String? value) {
-                          if (value == null || _emailController.text.isEmpty) {
-                            return 'Email Required';
-                          } else {
-                            return null;
-                          }
-                        },
-                        controller: _emailController,
-                        decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromARGB(255, 193, 193, 193),
-                        )),
-                    const SizedBox(
-                      height: 30,
+              child: Column(
+                children: [
+                  TextFormField(
+                      validator: (String? value) {
+                        if (value == null || _emailController.text.isEmpty) {
+                          return 'Email Required';
+                        } else {
+                          return null;
+                        }
+                      },
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                        counterText: ' ',
+                        filled: true,
+                        fillColor: Color.fromARGB(255, 193, 193, 193),
+                      )),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  TextFormField(
+                    validator: (String? value) {
+                      if (value == null || _emailController.text.isEmpty) {
+                        return 'Password Required';
+                      } else {
+                        return null;
+                      }
+                    },
+                    controller: _passwordController,
+                    decoration: const InputDecoration(
+                      counterText: ' ',
+                      filled: true,
+                      fillColor: Color.fromARGB(255, 193, 193, 193),
                     ),
-                    TextFormField(
-                        validator: (String? value) {
-                          if (value == null || _emailController.text.isEmpty) {
-                            return 'Password Required';
-                          } else {
-                            return null;
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const SizedBox(height: 35),
+                  InkWell(
+                    onTap: () async {
+                      final validForm = _formKey.currentState!.validate();
+                      if (validForm) {
+                        final _output = await AuthMethods().signUpUser(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        );
+                        if (_output == null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreenView(),
+                              ));
+                        } else {
+                          if (_output != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('$_output'),
+                              duration: const Duration(
+                                milliseconds: 2300,
+                              ),
+                              backgroundColor: Colors.red.shade500,
+                            ));
                           }
-                        },
-                        controller: _passwordController,
-                        decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromARGB(255, 193, 193, 193),
-                        )),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
+                        }
+                      }
+                    },
+                    child: Ink(
+                      width: MediaQuery.of(context).size.width,
                       padding: const EdgeInsets.all(12),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        color: Colors.grey,
+                        color: Colors.green.shade400,
                       ),
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          final validForm = _formKey.currentState!.validate();
-                          if (validForm) {
-                            await AuthMethods().logInUser(
-                              email: _emailController.text,
-                              password: _passwordController.text,
-                            );
-                          }
-                        },
-                        child: Text(
-                          'Log in',
-                          style: TextStyle(
-                            fontSize: 26,
-                            color: Colors.black,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.grey,
+                      child: const Text(
+                        'Log in',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 26,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
