@@ -46,7 +46,13 @@ class _LoginScreenView extends State<LoginScreenView> {
                 child: Column(
                   children: [
                     TextFormField(
-                        validator: (String? value) {},
+                        validator: (String? value) {
+                          if (value == null || _emailController.text.isEmpty) {
+                            return 'Email Required';
+                          } else {
+                            return null;
+                          }
+                        },
                         controller: _emailController,
                         decoration: const InputDecoration(
                           filled: true,
@@ -56,6 +62,13 @@ class _LoginScreenView extends State<LoginScreenView> {
                       height: 30,
                     ),
                     TextFormField(
+                        validator: (String? value) {
+                          if (value == null || _emailController.text.isEmpty) {
+                            return 'Password Required';
+                          } else {
+                            return null;
+                          }
+                        },
                         controller: _passwordController,
                         decoration: const InputDecoration(
                           filled: true,
@@ -63,18 +76,6 @@ class _LoginScreenView extends State<LoginScreenView> {
                         )),
                     const SizedBox(
                       height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
-                        Text(
-                          'FORGET PASSWORD',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
                     ),
                     Container(
                       padding: const EdgeInsets.all(12),
