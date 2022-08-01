@@ -1,5 +1,7 @@
 import 'package:class_assignment_2/src/firebase/create_profile_dao.dart';
+import 'package:class_assignment_2/src/firebase/firebase_methods.dart';
 import 'package:class_assignment_2/src/models/user_model.dart';
+import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
 import 'package:class_assignment_2/src/widgets/bottom_create_bottun.dart';
 import 'package:class_assignment_2/src/widgets/bottom_radio_button.dart';
 import 'package:class_assignment_2/src/widgets/name_field.dart';
@@ -42,6 +44,15 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Create Profile'),
+        leading: IconButton(
+          onPressed: () {
+            setState(() {
+              FirebaseMethods().logOutUser();
+            });
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -63,6 +74,12 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
                   personWorkStatus: radioGroupValue!,
                 );
                 CreateProfileDao().saveUser(userModel);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const OpenVacanciesScreen(),
+                  ),
+                );
               },
             ),
           ],

@@ -1,4 +1,4 @@
-import 'package:class_assignment_2/src/firebase/auth_methods.dart';
+import 'package:class_assignment_2/src/firebase/firebase_methods.dart';
 import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 
 import 'package:class_assignment_2/src/screens/login_screen_view.dart';
@@ -66,7 +66,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                   ),
                   TextFormField(
                     validator: (String? value) {
-                      if (value == null || _emailController.text.isEmpty) {
+                      if (value == null || _passwordController.text.isEmpty) {
                         return 'Password Required';
                       } else {
                         return null;
@@ -99,8 +99,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                           print(_output);
                           if (_output == null) {
                             navigator.push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const CreateProfileScreenView(),
+                              builder: (context) => const LoginScreenView(),
                             ));
                           } else {
                             if (_output != null) {
@@ -132,7 +131,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: 'Already have account? ',
+                              text: 'Already have an account? ',
                               style: TextStyle(
                                 color: Colors.grey.shade900,
                                 fontSize: 16,

@@ -1,4 +1,4 @@
-import 'package:class_assignment_2/src/firebase/auth_methods.dart';
+import 'package:class_assignment_2/src/firebase/firebase_methods.dart';
 import 'package:flutter/material.dart';
 
 class OpenVacanciesScreen extends StatefulWidget {

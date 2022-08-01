@@ -1,4 +1,4 @@
-import 'package:class_assignment_2/src/firebase/auth_methods.dart';
+import 'package:class_assignment_2/src/firebase/firebase_methods.dart';
 import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
 import 'package:class_assignment_2/src/screens/register_screen_view.dart';
@@ -66,7 +66,7 @@ class _LoginScreenView extends State<LoginScreenView> {
                   ),
                   TextFormField(
                     validator: (String? value) {
-                      if (value == null || _emailController.text.isEmpty) {
+                      if (value == null || _passwordController.text.isEmpty) {
                         return 'Password Required';
                       } else {
                         return null;
@@ -98,7 +98,8 @@ class _LoginScreenView extends State<LoginScreenView> {
                           );
                           if (_output == null) {
                             navigator.push(MaterialPageRoute(
-                              builder: (context) => const OpenVacanciesScreen(),
+                              builder: (context) =>
+                                  const CreateProfileScreenView(),
                             ));
                           }
 

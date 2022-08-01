@@ -1,5 +1,5 @@
 import 'package:class_assignment_2/firebase_options.dart';
-import 'package:class_assignment_2/src/firebase/auth_methods.dart';
+import 'package:class_assignment_2/src/firebase/firebase_methods.dart';
 import 'package:class_assignment_2/src/screens/login_screen_view.dart';
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
 import 'package:class_assignment_2/src/screens/register_screen_view.dart';
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       home: Builder(
         builder: (context) {
           if (FirebaseMethods().isLoggedIn()) {
-            return const LoginScreenView();
+            return const OpenVacanciesScreen();
           } else {
             return const RegisterScreenView();
           }

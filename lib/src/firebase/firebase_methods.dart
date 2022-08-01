@@ -19,7 +19,7 @@ class FirebaseMethods {
     required String email,
     required String password,
   }) async {
-    String result = 'Error occurred';
+    String result = '';
     try {
       await _auth.createUserWithEmailAndPassword(
         email: email,
