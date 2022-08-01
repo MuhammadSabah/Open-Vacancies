@@ -1,4 +1,5 @@
 import 'package:class_assignment_2/src/firebase/auth_methods.dart';
+import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 
 import 'package:class_assignment_2/src/screens/login_screen_view.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,8 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                           print(_output);
                           if (_output == null) {
                             navigator.push(MaterialPageRoute(
-                              builder: (context) => LoginScreenView(),
+                              builder: (context) =>
+                                  const CreateProfileScreenView(),
                             ));
                           } else {
                             if (_output != null) {

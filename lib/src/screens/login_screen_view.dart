@@ -93,21 +93,15 @@ class _LoginScreenView extends State<LoginScreenView> {
                             email: _emailController.text,
                             password: _passwordController.text,
                           );
-                          if (_output == null) {
-                            navigator.push(MaterialPageRoute(
-                              builder: (context) => CreateProfileScreenView(),
+
+                          if (_output != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('$_output'),
+                              duration: const Duration(
+                                milliseconds: 2300,
+                              ),
+                              backgroundColor: Colors.red.shade500,
                             ));
-                          } else {
-                            if (_output != null) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text('$_output'),
-                                duration: const Duration(
-                                  milliseconds: 2300,
-                                ),
-                                backgroundColor: Colors.red.shade500,
-                              ));
-                            }
                           }
                         }
                       },
