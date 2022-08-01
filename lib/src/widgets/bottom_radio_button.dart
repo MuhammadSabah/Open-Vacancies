@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class BottomRadioButton extends StatefulWidget {
-  const BottomRadioButton({Key? key}) : super(key: key);
-
+  BottomRadioButton({Key? key, required this.radioGroupValue})
+      : super(key: key);
+  String? radioGroupValue;
   @override
   State<BottomRadioButton> createState() => _BottomRadioButtonState();
 }
 
 class _BottomRadioButtonState extends State<BottomRadioButton> {
-  String? radioGroupValue = 'employed';
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,10 +21,10 @@ class _BottomRadioButtonState extends State<BottomRadioButton> {
           leading: Radio(
             activeColor: Colors.red.shade600,
             value: 'employed',
-            groupValue: radioGroupValue,
+            groupValue: widget.radioGroupValue,
             onChanged: (String? value) {
               setState(() {
-                radioGroupValue = value;
+                widget.radioGroupValue = value;
               });
             },
           ),
@@ -36,10 +36,10 @@ class _BottomRadioButtonState extends State<BottomRadioButton> {
           leading: Radio(
             activeColor: Colors.red.shade600,
             value: 'unemployed',
-            groupValue: radioGroupValue,
+            groupValue: widget.radioGroupValue,
             onChanged: (String? value) {
               setState(() {
-                radioGroupValue = value;
+                widget.radioGroupValue = value;
               });
             },
           ),

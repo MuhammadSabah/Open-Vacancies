@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Builder(
         builder: (context) {
-          if (AuthMethods().isLoggedIn()) {
+          if (FirebaseMethods().isLoggedIn()) {
             return const LoginScreenView();
           } else {
             return const RegisterScreenView();

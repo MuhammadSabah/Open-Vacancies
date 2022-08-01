@@ -14,7 +14,7 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
     return Scaffold(
       body: GestureDetector(
         onTap: () {
-          AuthMethods().logOutUser();
+          FirebaseMethods().logOutUser();
         },
         child: Center(
           child: Text(

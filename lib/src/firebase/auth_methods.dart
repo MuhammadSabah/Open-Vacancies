@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthMethods {
+class FirebaseMethods {
   final _auth = FirebaseAuth.instance;
 
   bool isLoggedIn() {
@@ -25,6 +25,7 @@ class AuthMethods {
         email: email,
         password: password,
       );
+
       return null;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

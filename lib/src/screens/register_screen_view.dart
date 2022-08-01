@@ -2,6 +2,7 @@ import 'package:class_assignment_2/src/firebase/auth_methods.dart';
 import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 
 import 'package:class_assignment_2/src/screens/login_screen_view.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreenView extends StatefulWidget {
@@ -91,7 +92,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                         final navigator = Navigator.of(context);
                         final validForm = _formKey.currentState!.validate();
                         if (validForm) {
-                          final _output = await AuthMethods().signUpUser(
+                          final _output = await FirebaseMethods().signUpUser(
                             email: _emailController.text,
                             password: _passwordController.text,
                           );
@@ -122,6 +123,43 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                         ),
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 70),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Already have account? ',
+                              style: TextStyle(
+                                color: Colors.grey.shade900,
+                                fontSize: 16,
+                              ),
+                            ),
+                            TextSpan(
+                              text: 'Log in',
+                              style: TextStyle(
+                                color: Colors.red.shade900,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LoginScreenView(),
+                                    ),
+                                  );
+                                },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

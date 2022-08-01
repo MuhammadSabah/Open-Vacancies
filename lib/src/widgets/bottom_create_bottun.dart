@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-class BottomCreateButton extends StatefulWidget {
-  const BottomCreateButton({Key? key}) : super(key: key);
-
-  @override
-  State<BottomCreateButton> createState() => _BottomCreateButtonState();
-}
-
-class _BottomCreateButtonState extends State<BottomCreateButton> {
+class BottomCreateButton extends StatelessWidget {
+  const BottomCreateButton({
+    Key? key,
+    required this.onPressed,
+  }) : super(key: key);
+  final Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,9 +15,7 @@ class _BottomCreateButtonState extends State<BottomCreateButton> {
           width: 180,
           height: 52,
           child: ElevatedButton(
-            onPressed: () {
-              () {};
-            },
+            onPressed: onPressed,
             child: const Text(
               'Create Profile',
               style: TextStyle(
