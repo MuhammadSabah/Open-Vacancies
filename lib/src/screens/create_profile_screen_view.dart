@@ -1,5 +1,5 @@
 import 'package:class_assignment_2/src/firebase/create_profile_dao.dart';
-import 'package:class_assignment_2/src/firebase/firebase_methods.dart';
+import 'package:class_assignment_2/src/firebase/user_dao.dart';
 import 'package:class_assignment_2/src/models/user_model.dart';
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
 import 'package:class_assignment_2/src/widgets/bottom_create_bottun.dart';
@@ -8,6 +8,7 @@ import 'package:class_assignment_2/src/widgets/name_field.dart';
 import 'package:class_assignment_2/src/widgets/phone_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CreateProfileScreenView extends StatefulWidget {
   const CreateProfileScreenView({Key? key}) : super(key: key);
@@ -39,6 +40,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
 
   @override
   Widget build(BuildContext context) {
+    final profileDao = Provider.of<UserDao>(context, listen: false);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -47,7 +49,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
         leading: IconButton(
           onPressed: () {
             setState(() {
-              FirebaseMethods().logOutUser();
+              UserDao().logOutUser();
             });
             Navigator.of(context).pop();
           },
@@ -80,6 +82,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
                     builder: (context) => const OpenVacanciesScreen(),
                   ),
                 );
+                profileDao.profileClicked();
               },
             ),
           ],

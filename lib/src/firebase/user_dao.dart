@@ -1,7 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
-class FirebaseMethods {
+class UserDao extends ChangeNotifier {
   final _auth = FirebaseAuth.instance;
+  bool _didCreateProfile = false;
+
+  bool get didCreateProfile => _didCreateProfile;
+
+  void profileClicked() {
+    _didCreateProfile = true;
+    notifyListeners();
+  }
 
   bool isLoggedIn() {
     return _auth.currentUser != null;
@@ -73,6 +82,8 @@ class FirebaseMethods {
   }
 
   void logOutUser() async {
+    _didCreateProfile = false;
     await _auth.signOut();
+    notifyListeners();
   }
 }

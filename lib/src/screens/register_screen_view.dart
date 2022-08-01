@@ -1,4 +1,4 @@
-import 'package:class_assignment_2/src/firebase/firebase_methods.dart';
+import 'package:class_assignment_2/src/firebase/user_dao.dart';
 import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 
 import 'package:class_assignment_2/src/screens/login_screen_view.dart';
@@ -92,7 +92,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                         final navigator = Navigator.of(context);
                         final validForm = _formKey.currentState!.validate();
                         if (validForm) {
-                          final _output = await FirebaseMethods().signUpUser(
+                          final _output = await UserDao().signUpUser(
                             email: _emailController.text,
                             password: _passwordController.text,
                           );
