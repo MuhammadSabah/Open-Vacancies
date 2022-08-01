@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 
-class AuthMethods {
+class AuthMethods with ChangeNotifier {
   final _auth = FirebaseAuth.instance;
 
   bool isLoggedIn() {
@@ -73,5 +74,6 @@ class AuthMethods {
 
   void logOutUser() async {
     await _auth.signOut();
+    notifyListeners();
   }
 }

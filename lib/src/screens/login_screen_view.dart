@@ -89,7 +89,7 @@ class _LoginScreenView extends State<LoginScreenView> {
                         final navigator = Navigator.of(context);
                         final validForm = _formKey.currentState!.validate();
                         if (validForm) {
-                          final _output = await AuthMethods().signUpUser(
+                          final _output = await AuthMethods().logInUser(
                             email: _emailController.text,
                             password: _passwordController.text,
                           );
