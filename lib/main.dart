@@ -1,5 +1,5 @@
 import 'package:class_assignment_2/firebase_options.dart';
-import 'package:class_assignment_2/src/firebase/user_dao.dart';
+import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:class_assignment_2/src/screens/register_screen_view.dart';
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         home: Builder(
           builder: (context) {
-            if (UserDao().isLoggedIn()) {
+            if (UserAuthDao().isLoggedIn()) {
               return const OpenVacanciesScreen();
             } else {
               return const RegisterScreenView();

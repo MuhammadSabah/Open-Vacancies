@@ -4,7 +4,7 @@ import 'package:class_assignment_2/src/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class CreateProfileDao {
+class UserProfileDao {
   final CollectionReference _users =
       FirebaseFirestore.instance.collection('users');
 

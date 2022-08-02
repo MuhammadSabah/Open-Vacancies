@@ -1,5 +1,5 @@
-import 'package:class_assignment_2/src/firebase/create_profile_dao.dart';
-import 'package:class_assignment_2/src/firebase/user_dao.dart';
+import 'package:class_assignment_2/src/firebase/user_profile_dao.dart';
+import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
 import 'package:class_assignment_2/src/models/user_model.dart';
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
 import 'package:class_assignment_2/src/widgets/bottom_create_bottun.dart';
@@ -48,7 +48,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
         leading: IconButton(
           onPressed: () {
             setState(() {
-              UserDao().logOutUser();
+              UserAuthDao().logOutUser();
             });
             Navigator.of(context).pop();
           },
@@ -78,7 +78,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
                   );
                   final validForm = _formKey.currentState!.validate();
                   if (validForm) {
-                    CreateProfileDao().saveUser(userModel);
+                    UserProfileDao().saveUser(userModel);
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

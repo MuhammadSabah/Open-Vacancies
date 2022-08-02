@@ -1,4 +1,4 @@
-import 'package:class_assignment_2/src/firebase/user_dao.dart';
+import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
 import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
 import 'package:class_assignment_2/src/screens/register_screen_view.dart';
@@ -123,7 +123,7 @@ class _LoginScreenView extends State<LoginScreenView> {
                         final navigator = Navigator.of(context);
                         final validForm = _formKey.currentState!.validate();
                         if (validForm) {
-                          final _output = await UserDao().logInUser(
+                          final _output = await UserAuthDao().logInUser(
                             email: _emailController.text,
                             password: _passwordController.text,
                           );

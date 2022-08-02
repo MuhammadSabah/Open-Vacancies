@@ -1,4 +1,4 @@
-import 'package:class_assignment_2/src/firebase/user_dao.dart';
+import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
 import 'package:class_assignment_2/src/models/message.dart';
 import 'package:class_assignment_2/src/firebase/message_dao.dart';
 import 'package:class_assignment_2/src/screens/register_screen_view.dart';
@@ -106,7 +106,7 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
       actions: [
         IconButton(
           onPressed: () {
-            UserDao().logOutUser();
+            UserAuthDao().logOutUser();
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class UserDao {
+class UserAuthDao {
   final _auth = FirebaseAuth.instance;
 
   // !: The commented code below should be used with shared preferences.
