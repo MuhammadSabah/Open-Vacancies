@@ -42,7 +42,7 @@ class _JobCategoryDropDownState extends State<JobCategoryDropDown> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Text(
-                      widget.toString(),
+                      widget.categoryValue.toString(),
                       style: const TextStyle(
                         fontSize: 16,
                       ),

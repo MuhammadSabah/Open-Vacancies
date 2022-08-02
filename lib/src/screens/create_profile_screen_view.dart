@@ -17,13 +17,19 @@ class CreateProfileScreenView extends StatefulWidget {
 }
 
 class _CreateProfileScreenView extends State<CreateProfileScreenView> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String cityValue = '';
   String categoryValue = '';
   String? radioGroupValue = 'employed';
-  List<String> categoryList = ['Developer', 'Designer'];
+  List<String> categoryList = [
+    'Developer',
+    'Designer',
+    'Manager',
+    'Cashier',
+    'Accountant',
+  ];
   List<String> cities = [
     'Erbil',
     'Sulaymaniyah',
