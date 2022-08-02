@@ -15,6 +15,7 @@ class _LoginScreenView extends State<LoginScreenView> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _obscureText = true;
 
   @override
   void dispose() {
@@ -65,6 +66,7 @@ class _LoginScreenView extends State<LoginScreenView> {
                     height: 30,
                   ),
                   TextFormField(
+                    obscureText: _obscureText,
                     validator: (String? value) {
                       if (value == null || _passwordController.text.isEmpty) {
                         return 'Password Required';
@@ -74,7 +76,32 @@ class _LoginScreenView extends State<LoginScreenView> {
                     },
                     controller: _passwordController,
                     keyboardType: TextInputType.visiblePassword,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                      suffixIcon: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            splashRadius: 20,
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                            icon: _obscureText
+                                ? Icon(
+                                    Icons.visibility_off,
+                                    color: Colors.grey.shade800,
+                                    size: 20,
+                                  )
+                                : Icon(
+                                    Icons.visibility,
+                                    color: Colors.grey.shade800,
+                                    size: 20,
+                                  ),
+                          ),
+                        ],
+                      ),
                       counterText: ' ',
                       filled: true,
                       fillColor: Color.fromARGB(255, 209, 209, 209),
