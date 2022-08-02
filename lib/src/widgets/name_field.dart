@@ -27,7 +27,7 @@ class _NameFieldState extends State<NameField> {
         TextFormField(
           validator: (String? value) {
             if (value == null || widget.nameController.text.isEmpty) {
-              return 'Name is required';
+              return 'Name field is empty';
             }
           },
           controller: widget.nameController,
