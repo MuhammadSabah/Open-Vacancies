@@ -2,6 +2,7 @@ import 'package:class_assignment_2/src/firebase/create_profile_dao.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MessageCard extends StatefulWidget {
   const MessageCard({
@@ -32,7 +33,7 @@ class _MessageCardState extends State<MessageCard> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
 
-    userData = snapshot.data()!;
+    userData = snapshot.data() ?? {};
     setState(() {});
   }
 
@@ -83,6 +84,30 @@ class _MessageCardState extends State<MessageCard> {
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
                             color: Color(0xff777777),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          final Uri link = Uri.parse(widget.url);
+                          if (!await launchUrl(link,
+                              mode: LaunchMode.externalApplication)) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: const Text('Could not be launched!'),
+                              duration: const Duration(
+                                milliseconds: 2300,
+                              ),
+                              backgroundColor: Colors.red.shade500,
+                            ));
+                          }
+                        },
+                        child: Text(
+                          'Link'.toUpperCase(),
+                          style: const TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromARGB(255, 90, 90, 90),
                           ),
                         ),
                       ),

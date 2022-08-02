@@ -107,7 +107,7 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
       actions: [
         IconButton(
           onPressed: () {
-            Provider.of<UserDao>(context, listen: false).logOutUser();
+            UserDao().logOutUser();
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

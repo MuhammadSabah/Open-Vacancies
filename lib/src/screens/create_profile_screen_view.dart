@@ -40,7 +40,6 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
 
   @override
   Widget build(BuildContext context) {
-    final profileDao = Provider.of<UserDao>(context, listen: false);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -82,7 +81,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
                     builder: (context) => const OpenVacanciesScreen(),
                   ),
                 );
-                profileDao.profileClicked();
+                // profileDao.profileClicked();
               },
             ),
           ],

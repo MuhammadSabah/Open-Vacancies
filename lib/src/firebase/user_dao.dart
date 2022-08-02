@@ -1,16 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class UserDao extends ChangeNotifier {
+class UserDao {
   final _auth = FirebaseAuth.instance;
-  bool _didCreateProfile = false;
 
-  bool get didCreateProfile => _didCreateProfile;
+  // !: The commented code below should be used with shared preferences.
+  // bool _didCreateProfile = false;
 
-  void profileClicked() {
-    _didCreateProfile = true;
-    notifyListeners();
-  }
+  // bool get didCreateProfile => _didCreateProfile;
+
+  // void profileClicked() {
+  //   _didCreateProfile = true;
+  //   notifyListeners();
+  // }
 
   bool isLoggedIn() {
     return _auth.currentUser != null;
@@ -82,8 +84,7 @@ class UserDao extends ChangeNotifier {
   }
 
   void logOutUser() async {
-    _didCreateProfile = false;
+    // _didCreateProfile = false;
     await _auth.signOut();
-    notifyListeners();
   }
 }
