@@ -90,8 +90,10 @@ class _MessageCardState extends State<MessageCard> {
                       GestureDetector(
                         onTap: () async {
                           final Uri link = Uri.parse(widget.url);
-                          if (!await launchUrl(link,
-                              mode: LaunchMode.externalApplication)) {
+                          try {
+                            await launchUrl(link,
+                                mode: LaunchMode.externalApplication);
+                          } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: const Text('Could not be launched!'),
                               duration: const Duration(

@@ -33,7 +33,7 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
-        appBar: _buildMessagesAppBar(),
+        appBar: _buildOpenVacanciesAppBar(),
         body: SafeArea(
           child: Column(
             children: [
@@ -101,7 +101,7 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
     );
   }
 
-  PreferredSizeWidget _buildMessagesAppBar() {
+  PreferredSizeWidget _buildOpenVacanciesAppBar() {
     return AppBar(
       actions: [
         IconButton(

@@ -1,5 +1,5 @@
-import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
 import 'package:class_assignment_2/src/screens/login_screen_view.dart';
+import 'package:class_assignment_2/src/widgets/register_form.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,6 @@ class _RegisterScreenView extends State<RegisterScreenView> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool _obscureText = true;
 
   @override
   void dispose() {
@@ -26,182 +25,66 @@ class _RegisterScreenView extends State<RegisterScreenView> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Form(
-            key: _formKey,
-            child: Column(
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 40,
+            ),
+            Text(
+              'Register'.toUpperCase(),
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey.shade900,
+              ),
+            ),
+            const SizedBox(height: 35),
+            RegisterForm(
+              formKey: _formKey,
+              emailController: _emailController,
+              passwordController: _passwordController,
+            ),
+            const SizedBox(height: 70),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 40,
-                ),
-                Text(
-                  'Register'.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey.shade900,
-                  ),
-                ),
-                const SizedBox(height: 35),
-                Container(
-                  padding: const EdgeInsets.all(25),
-                  child: Column(
+                RichText(
+                  text: TextSpan(
                     children: [
-                      TextFormField(
-                          validator: (String? value) {
-                            if (value == null ||
-                                _emailController.text.isEmpty) {
-                              return 'Email Required';
-                            } else {
-                              return null;
-                            }
-                          },
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(
-                            hintText: 'Your Email',
-                            counterText: ' ',
-                            filled: true,
-                            fillColor: Color.fromARGB(255, 209, 209, 209),
-                          )),
-                      const SizedBox(
-                        height: 30,
+                      TextSpan(
+                        text: 'Already have account? ',
+                        style: TextStyle(
+                          color: Colors.grey.shade900,
+                          fontSize: 16,
+                        ),
                       ),
-                      TextFormField(
-                        obscureText: _obscureText,
-                        validator: (String? value) {
-                          if (value == null ||
-                              _passwordController.text.isEmpty) {
-                            return 'Password Required';
-                          } else {
-                            return null;
-                          }
-                        },
-                        controller: _passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                          hintText: 'Your Password',
-                          suffixIcon: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                splashRadius: 20,
-                                onPressed: () {
-                                  setState(() {
-                                    _obscureText = !_obscureText;
-                                  });
-                                },
-                                icon: _obscureText
-                                    ? Icon(
-                                        Icons.visibility_off,
-                                        color: Colors.grey.shade800,
-                                        size: 20,
-                                      )
-                                    : Icon(
-                                        Icons.visibility,
-                                        color: Colors.grey.shade800,
-                                        size: 20,
-                                      ),
+                      TextSpan(
+                        text: 'Log in',
+                        style: TextStyle(
+                          color: Colors.red.shade900,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoginScreenView(),
                               ),
-                            ],
-                          ),
-                          counterText: ' ',
-                          filled: true,
-                          fillColor: Color.fromARGB(255, 209, 209, 209),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const SizedBox(height: 35),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: 56,
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            final navigator = Navigator.of(context);
-                            final validForm = _formKey.currentState!.validate();
-                            if (validForm) {
-                              final _output = await UserAuthDao().signUpUser(
-                                email: _emailController.text,
-                                password: _passwordController.text,
-                              );
-                              print(_output);
-                              if (_output == null) {
-                                navigator.push(MaterialPageRoute(
-                                  builder: (context) => const LoginScreenView(),
-                                ));
-                              } else {
-                                if (_output != null) {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(
-                                    content: Text('$_output'),
-                                    duration: const Duration(
-                                      milliseconds: 2300,
-                                    ),
-                                    backgroundColor: Colors.red.shade500,
-                                  ));
-                                }
-                              }
-                            }
+                            );
                           },
-                          child: const Text(
-                            'Sign up',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 70),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Already have an account? ',
-                                  style: TextStyle(
-                                    color: Colors.grey.shade900,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: 'Log in',
-                                  style: TextStyle(
-                                    color: Colors.red.shade900,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const LoginScreenView(),
-                                        ),
-                                      );
-                                    },
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
