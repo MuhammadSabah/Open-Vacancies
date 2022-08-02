@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BottomCreateButton extends StatelessWidget {
-  const BottomCreateButton({
+class CreateProfileButton extends StatelessWidget {
+  const CreateProfileButton({
     Key? key,
     required this.onPressed,
   }) : super(key: key);

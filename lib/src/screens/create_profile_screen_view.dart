@@ -2,7 +2,7 @@ import 'package:class_assignment_2/src/firebase/user_profile_dao.dart';
 import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
 import 'package:class_assignment_2/src/models/user_model.dart';
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
-import 'package:class_assignment_2/src/widgets/bottom_create_button.dart';
+import 'package:class_assignment_2/src/widgets/create_profile_button.dart';
 import 'package:class_assignment_2/src/widgets/bottom_radio_button.dart';
 import 'package:class_assignment_2/src/widgets/name_field.dart';
 import 'package:class_assignment_2/src/widgets/phone_field.dart';
@@ -66,7 +66,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
               _buildCityDropDown(),
               _buildJobCategoryDropDown(),
               BottomRadioButton(radioGroupValue: radioGroupValue),
-              BottomCreateButton(
+              CreateProfileButton(
                 onPressed: () {
                   UserModel userModel = UserModel(
                     name: _nameController.text,
