@@ -1,7 +1,7 @@
 import 'package:class_assignment_2/firebase_options.dart';
 import 'package:class_assignment_2/src/firebase/user_dao.dart';
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:class_assignment_2/src/screens/register_screen_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +32,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData().copyWith(
+          textTheme: GoogleFonts.poppinsTextTheme(),
           appBarTheme: const AppBarTheme(
             systemOverlayStyle: SystemUiOverlayStyle(
               statusBarColor: Color.fromARGB(255, 209, 209, 209),

@@ -27,6 +27,7 @@ class _LoginScreenView extends State<LoginScreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Form(
         key: _formKey,
         child: Column(
@@ -39,6 +40,7 @@ class _LoginScreenView extends State<LoginScreenView> {
               'Login'.toUpperCase(),
               style: TextStyle(
                 fontSize: 36,
+                fontWeight: FontWeight.w500,
                 color: Colors.grey.shade900,
               ),
             ),
@@ -145,6 +147,7 @@ class _LoginScreenView extends State<LoginScreenView> {
                         'Log in',
                         style: TextStyle(
                           fontSize: 18,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),

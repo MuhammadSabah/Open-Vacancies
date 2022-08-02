@@ -7,7 +7,6 @@ import 'package:class_assignment_2/src/widgets/message_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 class OpenVacanciesScreen extends StatefulWidget {
   const OpenVacanciesScreen({Key? key}) : super(key: key);
