@@ -1,6 +1,4 @@
 import 'package:class_assignment_2/src/firebase/user_dao.dart';
-import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
-
 import 'package:class_assignment_2/src/screens/login_screen_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

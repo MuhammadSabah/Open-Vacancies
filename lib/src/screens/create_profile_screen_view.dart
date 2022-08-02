@@ -74,7 +74,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
                   personWorkStatus: radioGroupValue!,
                 );
                 CreateProfileDao().saveUser(userModel);
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const OpenVacanciesScreen(),

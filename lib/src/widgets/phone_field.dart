@@ -29,7 +29,7 @@ class _PhoneFieldState extends State<PhoneField> {
           keyboardType: TextInputType.phone,
           decoration: const InputDecoration(
             prefixIcon: Padding(
-              padding: EdgeInsets.only(top: 12.0, left: 8),
+              padding: EdgeInsets.only(top: 11.0, left: 8, right: 8),
               child: Text(
                 '+964',
                 style: TextStyle(
