@@ -27,7 +27,7 @@ class _PhoneFieldState extends State<PhoneField> {
         TextFormField(
           validator: (String? value) {
             if (value == null || widget.phoneController.text.isEmpty) {
-              return 'Phone field is empty';
+              return 'Phone is required';
             }
           },
           controller: widget.phoneController,
