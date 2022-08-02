@@ -62,6 +62,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
+                            hintText: 'Your Email',
                             counterText: ' ',
                             filled: true,
                             fillColor: Color.fromARGB(255, 209, 209, 209),
@@ -82,6 +83,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
                         controller: _passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         decoration: InputDecoration(
+                          hintText: 'Your Password',
                           suffixIcon: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,

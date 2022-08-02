@@ -60,6 +60,7 @@ class _LoginScreenView extends State<LoginScreenView> {
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
+                        hintText: 'Your Email',
                         counterText: ' ',
                         filled: true,
                         fillColor: Color.fromARGB(255, 209, 209, 209),
@@ -79,6 +80,7 @@ class _LoginScreenView extends State<LoginScreenView> {
                     controller: _passwordController,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
+                      hintText: 'Your Password',
                       suffixIcon: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
