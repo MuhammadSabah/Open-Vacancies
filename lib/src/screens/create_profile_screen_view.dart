@@ -18,6 +18,7 @@ class CreateProfileScreenView extends StatefulWidget {
 class _CreateProfileScreenView extends State<CreateProfileScreenView> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   String cityValue = '';
   String categoryValue = '';
   String? radioGroupValue = 'employed';
@@ -56,34 +57,40 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
-        child: Column(
-          children: [
-            NameField(nameController: _nameController),
-            PhoneField(phoneController: _phoneController),
-            _buildCityDropDown(),
-            _buildJobCategoryDropDown(),
-            BottomRadioButton(radioGroupValue: radioGroupValue),
-            BottomCreateButton(
-              onPressed: () {
-                UserModel userModel = UserModel(
-                  name: _nameController.text,
-                  uid: FirebaseAuth.instance.currentUser!.uid,
-                  phone: _phoneController.text,
-                  city: cityValue,
-                  jobCategory: categoryValue,
-                  personWorkStatus: radioGroupValue!,
-                );
-                CreateProfileDao().saveUser(userModel);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const OpenVacanciesScreen(),
-                  ),
-                );
-                // profileDao.profileClicked();
-              },
-            ),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              NameField(nameController: _nameController),
+              PhoneField(phoneController: _phoneController),
+              _buildCityDropDown(),
+              _buildJobCategoryDropDown(),
+              BottomRadioButton(radioGroupValue: radioGroupValue),
+              BottomCreateButton(
+                onPressed: () {
+                  UserModel userModel = UserModel(
+                    name: _nameController.text,
+                    uid: FirebaseAuth.instance.currentUser!.uid,
+                    phone: _phoneController.text,
+                    city: cityValue,
+                    jobCategory: categoryValue,
+                    personWorkStatus: radioGroupValue!,
+                  );
+                  final validForm = _formKey.currentState!.validate();
+                  if (validForm) {
+                    CreateProfileDao().saveUser(userModel);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const OpenVacanciesScreen(),
+                      ),
+                    );
+                  }
+                  // profileDao.profileClicked();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

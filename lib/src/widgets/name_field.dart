@@ -24,7 +24,12 @@ class _NameFieldState extends State<NameField> {
           ),
         ),
         const SizedBox(height: 10),
-        TextField(
+        TextFormField(
+          validator: (String? value) {
+            if (value == null || widget.nameController.text.isEmpty) {
+              return 'Name field is empty';
+            }
+          },
           controller: widget.nameController,
           decoration: const InputDecoration(
             counterText: ' ',
