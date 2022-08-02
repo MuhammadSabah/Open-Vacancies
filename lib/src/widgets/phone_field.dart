@@ -24,7 +24,12 @@ class _PhoneFieldState extends State<PhoneField> {
           ),
         ),
         const SizedBox(height: 10),
-        TextField(
+        TextFormField(
+          validator: (String? value) {
+            if (value == null || widget.phoneController.text.isEmpty) {
+              return 'Phone field is empty';
+            }
+          },
           controller: widget.phoneController,
           keyboardType: TextInputType.phone,
           decoration: const InputDecoration(
