@@ -2,7 +2,7 @@ import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
 import 'package:class_assignment_2/src/models/message.dart';
 import 'package:class_assignment_2/src/firebase/message_dao.dart';
 import 'package:class_assignment_2/src/screens/register_screen_view.dart';
-import 'package:class_assignment_2/src/widgets/bottom_message_input_field.dart';
+import 'package:class_assignment_2/src/widgets/open_vacancies_bottom_container.dart';
 import 'package:class_assignment_2/src/widgets/message_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +49,7 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
                       Padding(
                         padding: const EdgeInsets.all(16.0).copyWith(bottom: 0),
                         child: SizedBox(
-                          height: MediaQuery.of(context).size.height / 2.3,
+                          height: MediaQuery.of(context).size.height / 2.1,
                           child: StreamBuilder(
                             stream: _streamResult,
                             builder: (context, AsyncSnapshot snapshot) {
@@ -93,7 +93,7 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
                   ),
                 ),
               ),
-              const BottomMessageInputField(),
+              const OpenVacanciesBottomContainer(),
             ],
           ),
         ),
