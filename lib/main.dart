@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData().copyWith(
         textTheme: GoogleFonts.poppinsTextTheme(),
         appBarTheme: const AppBarTheme(
+          // Changing the status bar color.
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Color.fromARGB(255, 209, 209, 209),
             statusBarIconBrightness: Brightness.dark,
@@ -50,6 +51,7 @@ class _MyAppState extends State<MyApp> {
               child: CircularProgressIndicator(),
             );
           }
+          // If user is logged in.
           if (snapshot.hasData) {
             return const OpenVacanciesScreen();
           }

@@ -4,7 +4,7 @@ import 'package:class_assignment_2/src/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class UserProfileDao  {
+class UserProfileDao {
   final CollectionReference _users =
       FirebaseFirestore.instance.collection('users');
 
@@ -32,6 +32,8 @@ class UserProfileDao  {
         });
   }
 
+  // Checking if the user created a profile before.
+  // for that we check the 'users' collection. If there is a document with the current user id then we return true since the user created his/her profile before, otherwise we return false.
   Future<bool?> didUserCreateProfileBefore() async {
     bool userExists = false;
     if (FirebaseAuth.instance.currentUser == null) {
