@@ -32,7 +32,6 @@ class _LoginFormState extends State<LoginForm> {
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
-    final userProfile = Provider.of<UserProfileDao>(context, listen: false);
     return Form(
       key: _formKey,
       child: Column(

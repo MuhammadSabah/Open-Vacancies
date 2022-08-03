@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
-class UserAuthDao extends ChangeNotifier {
+class UserAuthDao {
   final _auth = FirebaseAuth.instance;
   bool isLoggedIn() {
     return _auth.currentUser != null;
@@ -74,6 +73,5 @@ class UserAuthDao extends ChangeNotifier {
 
   void logOutUser() async {
     await _auth.signOut();
-    notifyListeners();
   }
 }

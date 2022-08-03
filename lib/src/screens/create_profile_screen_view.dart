@@ -46,8 +46,6 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
 
   @override
   Widget build(BuildContext context) {
-    final UserAuthDao userDao =
-        Provider.of<UserAuthDao>(context, listen: false);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -55,7 +53,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
         title: const Text('Create Profile'),
         leading: IconButton(
           onPressed: () {
-            userDao.logOutUser();
+            UserAuthDao().logOutUser();
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

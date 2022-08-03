@@ -3,9 +3,8 @@ import 'dart:async';
 import 'package:class_assignment_2/src/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
-class UserProfileDao extends ChangeNotifier {
+class UserProfileDao  {
   final CollectionReference _users =
       FirebaseFirestore.instance.collection('users');
 

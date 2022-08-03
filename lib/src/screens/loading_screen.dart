@@ -19,20 +19,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   Future<bool> userCreateAccountStatus() async {
-    return await Provider.of<UserProfileDao>(context, listen: false)
-            .didUserCreateProfileBefore() ??
-        false;
+    return await UserProfileDao().didUserCreateProfileBefore() ?? false;
   }
 
   void navigationResult() async {
     final navigator = Navigator.of(context);
     bool result = await userCreateAccountStatus();
     if (result) {
-      navigator.push(MaterialPageRoute(
+      navigator.pushReplacement(MaterialPageRoute(
         builder: (context) => const OpenVacanciesScreen(),
       ));
     } else {
-      navigator.push(MaterialPageRoute(
+      navigator.pushReplacement(MaterialPageRoute(
         builder: (context) => const CreateProfileScreenView(),
       ));
     }
