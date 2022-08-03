@@ -7,7 +7,6 @@ import 'package:class_assignment_2/src/widgets/create_profile_button.dart';
 import 'package:class_assignment_2/src/widgets/create_profile_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CreateProfileScreenView extends StatefulWidget {
   const CreateProfileScreenView({Key? key}) : super(key: key);

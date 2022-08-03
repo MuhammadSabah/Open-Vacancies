@@ -1,12 +1,6 @@
 import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
-import 'package:class_assignment_2/src/firebase/user_profile_dao.dart';
-import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 import 'package:class_assignment_2/src/screens/loading_screen.dart';
-import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({

@@ -2,7 +2,6 @@ import 'package:class_assignment_2/src/firebase/user_profile_dao.dart';
 import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key? key}) : super(key: key);

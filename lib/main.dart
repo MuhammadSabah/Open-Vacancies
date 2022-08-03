@@ -1,7 +1,4 @@
 import 'package:class_assignment_2/firebase_options.dart';
-import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
-import 'package:class_assignment_2/src/firebase/user_profile_dao.dart';
-
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +6,6 @@ import 'package:class_assignment_2/src/screens/register_screen_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

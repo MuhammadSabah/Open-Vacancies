@@ -2,7 +2,6 @@ import 'package:class_assignment_2/src/models/message.dart';
 import 'package:class_assignment_2/src/firebase/message_dao.dart';
 import 'package:class_assignment_2/src/widgets/send_message_field.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 
 class OpenVacanciesBottomContainer extends StatefulWidget {
   const OpenVacanciesBottomContainer({Key? key}) : super(key: key);
