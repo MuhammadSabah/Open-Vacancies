@@ -1,6 +1,12 @@
 import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
+import 'package:class_assignment_2/src/firebase/user_profile_dao.dart';
 import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
+import 'package:class_assignment_2/src/screens/loading_screen.dart';
+import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
@@ -26,6 +32,7 @@ class _LoginFormState extends State<LoginForm> {
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
+    final userProfile = Provider.of<UserProfileDao>(context, listen: false);
     return Form(
       key: _formKey,
       child: Column(
@@ -111,7 +118,7 @@ class _LoginFormState extends State<LoginForm> {
                   // If there were no errors
                   if (output == null) {
                     navigator.push(MaterialPageRoute(
-                      builder: (context) => const CreateProfileScreenView(),
+                      builder: (context) => const LoadingScreen(),
                     ));
                   }
                   {

@@ -1,11 +1,15 @@
 import 'package:class_assignment_2/firebase_options.dart';
 import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
+import 'package:class_assignment_2/src/firebase/user_profile_dao.dart';
+import 'package:class_assignment_2/src/screens/create_profile_screen_view.dart';
 import 'package:class_assignment_2/src/screens/open_vacancies_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:class_assignment_2/src/screens/register_screen_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,13 +28,19 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          lazy: false,
+          create: (_) => UserAuthDao(),
+        ),
+        ChangeNotifierProvider(
+          lazy: false,
+          create: (_) => UserProfileDao(),
+        ),
+      ],
+      child: MaterialApp(
         theme: ThemeData().copyWith(
           textTheme: GoogleFonts.poppinsTextTheme(),
           appBarTheme: const AppBarTheme(
@@ -47,14 +57,21 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: Builder(
-          builder: (context) {
-            if (UserAuthDao().isLoggedIn()) {
-              return const OpenVacanciesScreen();
-            } else {
-              return const RegisterScreenView();
+        home: StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
+            if (snapshot.hasData) {
+              return const OpenVacanciesScreen();
+            }
+            return const RegisterScreenView();
           },
-        ));
+        ),
+      ),
+    );
   }
 }
