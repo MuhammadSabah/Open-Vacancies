@@ -74,17 +74,9 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
               nameController: _nameController,
               phoneController: _phoneController,
             ),
-            _buildDropDown(
-              title: 'City',
-              list: cities,
-              value: cityValue,
-            ),
-            _buildDropDown(
-              title: 'Job Category',
-              list: categoryList,
-              value: categoryValue,
-            ),
-            _buildRadioButtons(radioGroupValue: radioGroupValue),
+            _buildCityDropDown(),
+            _buildCategoryDropDown(),
+            _buildRadioButtons(),
             CreateProfileButton(
               onPressed: () {
                 UserModel userModel = UserModel(
@@ -102,7 +94,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => OpenVacanciesScreen(),
+                      builder: (context) => const OpenVacanciesScreen(),
                     ),
                   );
                 }
@@ -115,16 +107,12 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
     );
   }
 
-  Widget _buildDropDown({
-    required String title,
-    required List list,
-    required String value,
-  }) {
+  Widget _buildCityDropDown() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title.toString(),
+          'City'.toString(),
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w400,
@@ -144,7 +132,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Text(
-                      value.toString(),
+                      cityValue.toString(),
                       style: const TextStyle(
                         fontSize: 16,
                       ),
@@ -156,17 +144,17 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
                   child: DropdownButton<String>(
                     iconEnabledColor: Colors.red.shade700,
                     iconDisabledColor: Colors.red.shade700,
-                    items: list.map((element) {
+                    items: cities.map((city) {
                       return DropdownMenuItem<String>(
-                          value: element,
+                          value: city,
                           child: Text(
-                            element.toString(),
+                            city.toString(),
                           ));
                     }).toList(),
                     onChanged: (val) {
                       if (val is String) {
                         setState(() {
-                          value = val;
+                          cityValue = val;
                         });
                       }
                     },
@@ -181,7 +169,69 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
     );
   }
 
-  Widget _buildRadioButtons({required String? radioGroupValue}) {
+  Widget _buildCategoryDropDown() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Job Category'.toString(),
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 209, 209, 209),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      categoryValue.toString(),
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 12.0),
+                  child: DropdownButton<String>(
+                    iconEnabledColor: Colors.red.shade700,
+                    iconDisabledColor: Colors.red.shade700,
+                    items: categoryList.map((item) {
+                      return DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item.toString(),
+                          ));
+                    }).toList(),
+                    onChanged: (val) {
+                      if (val is String) {
+                        setState(() {
+                          categoryValue = val;
+                        });
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 20),
+      ],
+    );
+  }
+
+  Widget _buildRadioButtons() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -195,7 +245,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
             groupValue: radioGroupValue,
             onChanged: (String? value) {
               setState(() {
-                radioGroupValue = value;
+                radioGroupValue = value!;
               });
             },
           ),
@@ -210,7 +260,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
             groupValue: radioGroupValue,
             onChanged: (String? value) {
               setState(() {
-                radioGroupValue = value;
+                radioGroupValue = value!;
               });
             },
           ),

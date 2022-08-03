@@ -103,6 +103,7 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
 
   PreferredSizeWidget _buildOpenVacanciesAppBar() {
     return AppBar(
+      leading: null,
       actions: [
         IconButton(
           onPressed: () {
