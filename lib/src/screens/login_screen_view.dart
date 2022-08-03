@@ -10,17 +10,6 @@ class LoginScreenView extends StatefulWidget {
 }
 
 class _LoginScreenView extends State<LoginScreenView> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +31,7 @@ class _LoginScreenView extends State<LoginScreenView> {
               ),
             ),
             const SizedBox(height: 35),
-            LoginForm(
-              formKey: _formKey,
-              emailController: _emailController,
-              passwordController: _passwordController,
-            ),
+            const LoginForm(),
             const SizedBox(height: 70),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

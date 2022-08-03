@@ -5,36 +5,40 @@ import 'package:flutter/material.dart';
 class LoginForm extends StatefulWidget {
   const LoginForm({
     Key? key,
-    required this.formKey,
-    required this.emailController,
-    required this.passwordController,
   }) : super(key: key);
-  final formKey;
-  final emailController;
-  final passwordController;
 
   @override
   State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: _formKey,
       child: Column(
         children: [
           TextFormField(
               validator: (String? value) {
-                if (value == null || widget.emailController.text.isEmpty) {
+                if (value == null || _emailController.text.isEmpty) {
                   return 'Email Required';
                 } else {
                   return null;
                 }
               },
-              controller: widget.emailController,
+              controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 hintText: 'Your Email',
@@ -48,13 +52,13 @@ class _LoginFormState extends State<LoginForm> {
           TextFormField(
             obscureText: _obscureText,
             validator: (String? value) {
-              if (value == null || widget.passwordController.text.isEmpty) {
+              if (value == null || _passwordController.text.isEmpty) {
                 return 'Password Required';
               } else {
                 return null;
               }
             },
-            controller: widget.passwordController,
+            controller: _passwordController,
             keyboardType: TextInputType.visiblePassword,
             decoration: InputDecoration(
               hintText: 'Your Password',
@@ -85,7 +89,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
               counterText: ' ',
               filled: true,
-              fillColor: Color.fromARGB(255, 209, 209, 209),
+              fillColor: const Color.fromARGB(255, 209, 209, 209),
             ),
           ),
           const SizedBox(
@@ -98,12 +102,13 @@ class _LoginFormState extends State<LoginForm> {
             child: ElevatedButton(
               onPressed: () async {
                 final navigator = Navigator.of(context);
-                final validForm = formKey.currentState!.validate();
+                final validForm = _formKey.currentState!.validate();
                 if (validForm) {
                   final output = await UserAuthDao().logInUser(
-                    email: widget.emailController.text,
-                    password: widget.passwordController.text,
+                    email: _emailController.text,
+                    password: _passwordController.text,
                   );
+                  // If there were no errors
                   if (output == null) {
                     navigator.push(MaterialPageRoute(
                       builder: (context) => const CreateProfileScreenView(),
@@ -111,8 +116,9 @@ class _LoginFormState extends State<LoginForm> {
                   }
                   {
                     if (output != null) {
+                      // If there were errors
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('$output'),
+                        content: Text(output),
                         duration: const Duration(
                           milliseconds: 2300,
                         ),

@@ -10,17 +10,6 @@ class RegisterScreenView extends StatefulWidget {
 }
 
 class _RegisterScreenView extends State<RegisterScreenView> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +31,7 @@ class _RegisterScreenView extends State<RegisterScreenView> {
               ),
             ),
             const SizedBox(height: 35),
-            RegisterForm(
-              formKey: _formKey,
-              emailController: _emailController,
-              passwordController: _passwordController,
-            ),
+            const RegisterForm(),
             const SizedBox(height: 70),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
