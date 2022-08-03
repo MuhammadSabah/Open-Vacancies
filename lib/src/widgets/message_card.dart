@@ -10,7 +10,9 @@ class MessageCard extends StatefulWidget {
     required this.company,
     required this.role,
     required this.url,
+    required this.sender,
   }) : super(key: key);
+  final String sender;
   final String company;
   final String role;
   final String url;
@@ -24,18 +26,18 @@ class _MessageCardState extends State<MessageCard> {
   @override
   void initState() {
     super.initState();
-    getName();
+    // getName();
   }
 
-  void getName() async {
-    var snapshot = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .get();
+  // void getName() async {
+  //   var snapshot = await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(FirebaseAuth.instance.currentUser!.uid)
+  //       .get();
 
-    userData = snapshot.data() ?? {};
-    setState(() {});
-  }
+  //   userData = snapshot.data() ?? {};
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class _MessageCardState extends State<MessageCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    userData['name'] ?? '',
+                    widget.sender,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,

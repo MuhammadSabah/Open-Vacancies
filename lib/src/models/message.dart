@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Message {
-  // final String sender;
+  final String sender;
   final String company;
   final String role;
   final String url;
   final DateTime date;
   Message({
-    // required this.sender,
+    required this.sender,
     required this.company,
     required this.role,
     required this.url,
@@ -15,7 +15,7 @@ class Message {
   });
 
   factory Message.fromJson(Map<dynamic, dynamic> json) => Message(
-        // sender: json['sender'] as String,
+        sender: json['sender'] as String,
         company: json['company'] as String,
         role: json['role'] as String,
         date: DateTime.parse(json['date'] as String),
@@ -23,7 +23,7 @@ class Message {
       );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        // 'sender': sender,
+        'sender': sender,
         'date': date.toString(),
         'company': company,
         'role': role,

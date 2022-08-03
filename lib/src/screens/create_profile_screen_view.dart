@@ -35,6 +35,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
     'Kirkuk',
     'Halabja',
   ];
+  String nameValue = '';
 
   @override
   void dispose() {
@@ -86,12 +87,14 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
                 );
                 final validForm = _formKey.currentState!.validate();
                 if (validForm) {
-                  // userDao.createProfileTapped();
+                  nameValue = _nameController.text;
+                  print('NAME VALUE: $nameValue');
                   UserProfileDao().saveUser(userModel);
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const OpenVacanciesScreen(),
+                      builder: (context) =>
+                          OpenVacanciesScreen(userName: nameValue),
                     ),
                   );
                 }

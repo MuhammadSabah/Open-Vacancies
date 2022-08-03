@@ -4,8 +4,9 @@ import 'package:class_assignment_2/src/widgets/send_message_field.dart';
 import 'package:flutter/material.dart';
 
 class OpenVacanciesBottomContainer extends StatefulWidget {
-  const OpenVacanciesBottomContainer({Key? key}) : super(key: key);
-
+  const OpenVacanciesBottomContainer({Key? key, required this.senderName})
+      : super(key: key);
+  final String senderName;
   @override
   State<OpenVacanciesBottomContainer> createState() =>
       _OpenVacanciesBottomContainerState();
@@ -68,6 +69,7 @@ class _OpenVacanciesBottomContainerState
         _urlController.text.isNotEmpty &&
         _roleController.text.isNotEmpty) {
       final message = Message(
+        sender: widget.senderName,
         company: _companyController.text,
         role: _roleController.text,
         date: DateTime.now(),

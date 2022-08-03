@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class OpenVacanciesScreen extends StatefulWidget {
-  const OpenVacanciesScreen({Key? key}) : super(key: key);
-
+  const OpenVacanciesScreen({Key? key, this.userName}) : super(key: key);
+  final String? userName;
   @override
   State<OpenVacanciesScreen> createState() => _OpenVacanciesScreenState();
 }
@@ -80,6 +80,7 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
                                     snapshot.data.docs[index],
                                   );
                                   return MessageCard(
+                                    sender: message.sender,
                                     company: message.company,
                                     role: message.role,
                                     url: message.url,
@@ -94,7 +95,9 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
                   ),
                 ),
               ),
-              const OpenVacanciesBottomContainer(),
+              OpenVacanciesBottomContainer(
+                senderName: widget.userName ?? '',
+              ),
             ],
           ),
         ),
