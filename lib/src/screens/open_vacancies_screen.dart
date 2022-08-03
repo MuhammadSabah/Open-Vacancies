@@ -1,6 +1,7 @@
 import 'package:class_assignment_2/src/firebase/user_auth_dao.dart';
 import 'package:class_assignment_2/src/models/message.dart';
 import 'package:class_assignment_2/src/firebase/message_dao.dart';
+import 'package:class_assignment_2/src/screens/login_screen_view.dart';
 import 'package:class_assignment_2/src/screens/register_screen_view.dart';
 import 'package:class_assignment_2/src/widgets/open_vacancies_bottom_container.dart';
 import 'package:class_assignment_2/src/widgets/message_card.dart';
@@ -40,14 +41,14 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
               SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.only(
-                    left: 12.0,
-                    right: 12,
+                    left: 6,
+                    right: 6,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(16.0).copyWith(bottom: 0),
+                        padding: const EdgeInsets.all(12.0).copyWith(bottom: 0),
                         child: SizedBox(
                           height: MediaQuery.of(context).size.height / 2.1,
                           child: StreamBuilder(
@@ -103,7 +104,14 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
 
   PreferredSizeWidget _buildOpenVacanciesAppBar() {
     return AppBar(
-      leading: null,
+      leading: IconButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return const LoginScreenView();
+          }));
+        },
+        icon: const Icon(Icons.arrow_back),
+      ),
       actions: [
         IconButton(
           onPressed: () {

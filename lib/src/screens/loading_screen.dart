@@ -25,11 +25,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
     final navigator = Navigator.of(context);
     bool result = await userCreateAccountStatus();
     if (result) {
-      navigator.pushReplacement(MaterialPageRoute(
+      navigator.push(MaterialPageRoute(
         builder: (context) => const OpenVacanciesScreen(),
       ));
     } else {
-      navigator.pushReplacement(MaterialPageRoute(
+      navigator.push(MaterialPageRoute(
         builder: (context) => const CreateProfileScreenView(),
       ));
     }
