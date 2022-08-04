@@ -36,29 +36,27 @@ class _OpenVacanciesBottomContainerState
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Color(0xffE9E9E9),
-            ),
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Color(0xffE9E9E9),
           ),
         ),
-        child: Column(
-          children: [
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SendMessageField(
-                companyController: _companyController,
-                roleController: _roleController,
-                urlController: _urlController,
-                sendMessage: _sendMessage,
-              ),
+      ),
+      child: Column(
+        children: [
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.all(16.0).copyWith(top: 8),
+            child: SendMessageField(
+              companyController: _companyController,
+              roleController: _roleController,
+              urlController: _urlController,
+              sendMessage: _sendMessage,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

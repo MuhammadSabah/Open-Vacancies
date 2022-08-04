@@ -30,65 +30,59 @@ class _OpenVacanciesScreenState extends State<OpenVacanciesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       appBar: _buildOpenVacanciesAppBar(),
       body: SafeArea(
         child: Column(
           children: [
-            SingleChildScrollView(
+            Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: 6,
                   right: 6,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(12.0).copyWith(bottom: 0),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height / 2.1,
-                        child: StreamBuilder(
-                          stream: _streamResult,
-                          builder: (context, AsyncSnapshot snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            } else if (!snapshot.hasData ||
-                                snapshot.data == null) {
-                              return const Center(
-                                child: Text('No Data!'),
-                              );
-                            } else if (snapshot.hasError) {
-                              return const Center(
-                                child: Text('Error occurred!'),
-                              );
-                            }
-                            return ListView.separated(
-                              separatorBuilder: (_, index) {
-                                return const SizedBox(height: 12);
-                              },
-                              physics: const BouncingScrollPhysics(),
-                              itemCount: snapshot.data.docs.length,
-                              itemBuilder: ((context, index) {
-                                final message = Message.fromSnapshot(
-                                  snapshot.data.docs[index],
-                                );
-                                return MessageCard(
-                                  sender: message.sender,
-                                  company: message.company,
-                                  role: message.role,
-                                  url: message.url,
-                                );
-                              }),
-                            );
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0).copyWith(bottom: 0),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height / 2.1,
+                    child: StreamBuilder(
+                      stream: _streamResult,
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (!snapshot.hasData || snapshot.data == null) {
+                          return const Center(
+                            child: Text('No Data!'),
+                          );
+                        } else if (snapshot.hasError) {
+                          return const Center(
+                            child: Text('Error occurred!'),
+                          );
+                        }
+                        return ListView.separated(
+                          separatorBuilder: (_, index) {
+                            return const SizedBox(height: 12);
                           },
-                        ),
-                      ),
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: snapshot.data.docs.length,
+                          itemBuilder: ((context, index) {
+                            final message = Message.fromSnapshot(
+                              snapshot.data.docs[index],
+                            );
+                            return MessageCard(
+                              sender: message.sender,
+                              company: message.company,
+                              role: message.role,
+                              url: message.url,
+                            );
+                          }),
+                        );
+                      },
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
