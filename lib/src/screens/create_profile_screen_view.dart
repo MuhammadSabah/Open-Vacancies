@@ -50,7 +50,7 @@ class _CreateProfileScreenView extends State<CreateProfileScreenView> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Create Profile'),
+        title: Text('Create Profile'.toUpperCase()),
         leading: IconButton(
           onPressed: () {
             UserAuthDao().logOutUser();
